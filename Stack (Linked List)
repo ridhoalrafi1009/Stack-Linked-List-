@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+struct Element {
+	int data;
+	Element *link;
+};
+
+Element *top=NULL;
+
+class stack{
+public:
+	void push (int databaru){
+		Element *help=new Element;
+		help->data=databaru;
+		help->link=top;
+		top=help;
+	}
+
+	void pop () {
+		Element *hapus;
+		if (top==NULL){
+			return ;
+		}
+		hapus=top;
+		top=top->link;
+		delete hapus;
+	}
+
+	bool isEmpty () {
+		return (top==NULL);
+	}
+
+	void viewall () {
+		Element *help=top;
+		if (!isEmpty()){
+			do {
+				cout<<help->data<<endl;
+				help=bantu->link;
+			}
+			while (help!=NULL);
+		}
+		else {
+			cout<<"Stack Kosong"<<endl;
+		}
+	}
+};
