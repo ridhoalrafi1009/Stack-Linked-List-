@@ -11,10 +11,19 @@ Element *top=NULL;
 class stack{
 public:
 	void push (int databaru){
-		Element *help=new Element;
-		help->data=databaru;
-		help->link=top;
-		top=help;
+		Element *bantu=new Element;
+		bantu->data=databaru;
+		bantu->link=top;
+		top=bantu;
+	}
+	
+	void GetTop()
+	{
+		if ( isEmpty() )
+		cout<<"Stack Kosong";
+		else
+		cout<<"Elemen paling atas : "<<top->data;
+		cout<<endl;
 	}
 
 	void pop () {
@@ -26,22 +35,81 @@ public:
 		top=top->link;
 		delete hapus;
 	}
-
+	
 	bool isEmpty () {
 		return (top==NULL);
 	}
 
 	void viewall () {
-		Element *help=top;
+		Element *bantu=top;
 		if (!isEmpty()){
 			do {
-				cout<<help->data<<endl;
-				help=bantu->link;
+				cout<<bantu->data<<endl;
+				bantu=bantu->link;
 			}
-			while (help!=NULL);
+			while (bantu!=NULL);
 		}
 		else {
 			cout<<"Stack Kosong"<<endl;
 		}
 	}
 };
+
+	int nama_menu();
+
+int name_menu(){
+	int menu;
+	cout<<" Pilih Menu "<<endl<<endl;
+	cout<<" 1. Push Stack "<<endl;
+	cout<<" 2. Pop Stack "<<endl;
+	cout<<" 3. Tampilkan Stack "<<endl;
+	cout<<" 4. Exit "<<endl<<endl;
+	cout<<" Pilihan : ";
+	cin>>menu;
+	
+	cin.ignore();
+	return menu;
+}
+int main (){
+	stack s;
+	int menu,i;
+	do{
+		menu=name_menu();
+		switch(menu){
+			case 1 :
+				cout<<" Masukkan Angka = ";
+				cin>>i;
+				s.push(i);
+				cin.ignore();
+				cin.get();
+				break;
+			
+			case 2 :
+				if(s.isEmpty()){
+					cout<<" Stack Kosong "<<endl;
+				}else{
+					cout<<" Angka yang Dihapus dari ";s.GetTop();
+					cin.get();
+					s.pop();
+				}
+				break;
+			
+			case 3 :
+				s.viewall();
+				cin.get();
+				break;
+				
+			case 4 :
+				exit (0);
+			
+			default :
+				cout<<" Pilihan Tidak Ada ";
+				cin.get();
+				break;
+		}
+		system("cls");
+	}while (menu!=5);
+			cin.get();
+			return 0;	
+	
+}
